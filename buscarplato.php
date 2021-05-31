@@ -72,7 +72,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>Registrar platos</h2>
+                        <h2>Buscar y actualizar platos</h2>
                     </div>
                 </div>
             </div>
@@ -91,51 +91,87 @@
             </div>
 
 
-<?php
+<?php 
+    session_start();
+    session_destroy();
+    if (isset($_SESSION['IdPlato'])){
+        $IdPlato = $_SESSION['IdPlato'];
+    }else{
+        $IdPlato = '';
+    }
+    if (isset($_SESSION['Nombre'])){
+        $Nombre = $_SESSION['Nombre'];
+    }else{
+        $Nombre = '';
+    }
+    if (isset($_SESSION['Descripcion'])){
+        $Descripcion = $_SESSION['Descripcion'];
+    }else{
+        $Descripcion = '';
+    }
+    if (isset($_SESSION['Precio'])){
+        $Precio = $_SESSION['Precio'];
+    }else{
+        $Precio = '';
+    }
 
-    //file_get_contents: Transmite un fichero completo a una cadena $data
-    $data = json_decode(file_get_contents('http://localhost:80/APICRUDRESTAURANTEPHP/api/read.php'), true)
 
 ?>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#platos').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-            }
-        });
-    });
+    function updatePlato()
+    {
+        document.getElementById('IdPlatou').value = document.getElementById('IdPlato').value;
+        document.getElementById('IdPlatod').value = document.getElementById('IdPlato').value;
+        document.getElementById('Nombreu').value = document.getElementById('Nombre').value;
+        document.getElementById('Preciou').value = document.getElementById('Precio').value;
+        document.getElementById('Descripcionu').value = document.getElementById('Descripcion').value;
+    }
 </script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <div class="container">
-    <h2>Lista de platos</h2>
-    <br>
-    <table class="table table-hover table-bordered table-striped" id="platos">
-        <thead>
-            <th>Id plato</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($data['body'] as $row) { ?>
-                <tr>
-                    <td><?php echo $row['IdPlato']; ?></td>
-                    <td><?php echo $row['Nombre']; ?></td>
-                    <td><?php echo $row['Descripcion']; ?></td>
-                    <td><?php echo $row['Precio']; ?></td>
-                </tr>
-            <?php
-            } ?>
-        </tbody>
-    </table>
+    <form method="POST" action="encontrarplato.php">
+        <div class="col-3">
+            <label for="IdPlato" class="form-label">IdPlato</label>
+            <input type="text" class="form-control" id="IdPlato" name="IdPlato" 
+                value="<?php echo $IdPlato; ?>">
+                <br>
+            <button type="submit" class="btn btn-warning">Buscar plato</button>
+        </div>
+        <div class="mb-3">
+            <label for="Nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="Nombre" name="Nombre"
+            value="<?php echo $Nombre; ?>">
+        </div>
+        <div class="mb-3">
+            <label for="Descripcion" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" id="Descripcion" name="Descripcion"
+            value="<?php echo $Descripcion; ?>">
+        </div>
+        <div class="mb-3">
+            <label for="Precio" class="form-label">Precio</label>
+            <input type="text" class="form-control" id="Precio" name="Precio"
+            value="<?php echo $Precio; ?>">
+        </div>
+        </form>
+        <form action="updatePlato.php" method="post" name="plmupdate" id="plupdate">
+            <input type="hidden"  class="form-control" id="IdPlatou" name="IdPlatou">
+            <input type="hidden"  class="form-control" id="Nombreu" name="Nombreu">
+            <input type="hidden"  class="form-control" id="Preciou" name="Preciou">
+            <input type="hidden"  class="form-control" id="Descripcionu" name="Descripcionu">
+            <button type="submit" class="btn btn-warning" style="float:left;"
+             onclick="updatePlato()" >Actualizar</button>
+        </form>
+        <form action="deletePlato.php" method="POST">
+            <input type="hidden"  class="form-control" id="IdPlatod" name="IdPlatod">           
+            <button type="submit" class="btn btn-warning" style="float:left;margin-left:20px;"
+            onclick="updatePlato(); return confirm('Seguro deseas borrar este registro?');"
+            >Eliminar</button>
+        </form>
+        
 </div>
-<!-- ** Footer Menu Area Start ** -->
-<footer class="footer_area">
+    
+    <!-- ** Footer Menu Area Start ** -->
+    <footer class="footer_area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -151,7 +187,7 @@
                             <div class="collapse navbar-collapse justify-content-center" id="yummyfood-footer-nav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Bienvenida</a>
+                                        <a class="nav-link" href="index.html">Bienvenida<span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="producto.php">Agregar platos</a>
@@ -181,7 +217,7 @@
                 <div class="col-12">
                     <!-- Copywrite Text -->
                     <div class="copy_right_text text-center">
-                        <p>Copyright @2021 All rights reserved</i> by <a href="img/core-img/BazardelMetal.ico" target="_blank">MetalHead</a></p>
+                        <p>Copyright @2018 All rights reserved</i> by <a href="img/core-img/BazardelMetal.ico" target="_blank">MetalHead</a></p>
                     </div>
                 </div>
             </div>

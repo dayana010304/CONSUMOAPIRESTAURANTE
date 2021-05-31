@@ -72,7 +72,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>Registrar platos</h2>
+                        <h2>Restaurante Hatoviejo</h2>
                     </div>
                 </div>
             </div>
@@ -91,51 +91,28 @@
             </div>
 
 
-<?php
+    <!-- ** Welcome Post Area Start ** -->
+            <p class="fst-italic">
+                En septiembre de 1982, empezó la historia del Restaurante Hatoviejo cuando nació en la variante de Las Palmas frente al Hotel Intercontinental de Medellín, Colombia. Se buscaba dotar a la ciudad de un espacio acogedor para familias, empresarios y turistas, que reflejara la cultura paisa y a la vez ofrecer a los visitantes lo mejor de nuestra comida típica colombiana (Bandeja Paisa, Ajiaco, Sancocho, Mondongo, Sudado, etc.) complementada con asados (llamados “Planchitas” en Hatoviejo).
+                <br>
+                <br>
+                Poco tiempo después, a los 2 años, Medellín demandó más sedes para prestar servicio  a los ejecutivos que trabajaban en el Centro de la ciudad, y en el año 2000 apareció la sede del Centro Comercial Oviedo. En octubre de 2018 abrió Hatoviejo Viva Envigado. Todas siguen abiertas el día de hoy y con Servicio a Domicilio.
+                <br>
+                <br>
+                Durante estos años Hatoviejo se ha convertido en un referente por su excelente cocina, por sus acogedores espacios, por su esmerado servicio y por sus espacios que recuerdan la arquitectura más tradicional de Colombia y de la cultura paisa. Hoy en día es considerado uno de los mejores restaurantes de Medellín y Colombia.
+                <br>
+                <br>
+                Durante el tiempo que ha prestado servicio, Hatoviejo ha logrado importantes premios y reconocimientos, entre otros ser destacado como el Restaurante con Mejor Servicio para Antioquia (Premios La Barra 2020), el Mejor Restaurante de Antioquia (Premios La Barra 2011) y el Premio Rosa de Los Vientos de la Asociación Colombiana de Periodistas de Turismo ACOPET en sus veinticinco años.
+                <br>
+                <br>
+                Hoy en día, Hatoviejo sigue siendo reconocido por su gastronomía con un menú más amplio incluyendo ensaladas, sopas, cazuelas, postres colombianos, una variada selección de vinos y licores y una serie de platos contemporáneos que incluyen diversos sabores de nuestras tierras. Su calidad sigue jugando un papel importante en su reconocimiento, al apoyarse de campesinos y empresas locales para tener siempre los mejores y más frescos ingredientes, junto con la producción artesanal y diaria de recetas. El medio ambiente también es de suma importancia para Hatoviejo, adoptando diversas acciones para mejorar procesos, disminuir consumos y aportar un granito de arena. (ver Política de Sostenibilidad).
+                <br>
+                <br>
+                Hatoviejo hace parte del gremio de restaurantes y turismo apoyando importantes asociaciones, fundaciones y empresas tanto públicas y privadas como el Tour Gastronómico, el Corredor gastronómico del Centro, Medellín Convention & Visitors Bureau y La Barra.
+            </p>
 
-    //file_get_contents: Transmite un fichero completo a una cadena $data
-    $data = json_decode(file_get_contents('http://localhost:80/APICRUDRESTAURANTEPHP/api/read.php'), true)
-
-?>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#platos').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-            }
-        });
-    });
-</script>
-<div class="container">
-    <h2>Lista de platos</h2>
-    <br>
-    <table class="table table-hover table-bordered table-striped" id="platos">
-        <thead>
-            <th>Id plato</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($data['body'] as $row) { ?>
-                <tr>
-                    <td><?php echo $row['IdPlato']; ?></td>
-                    <td><?php echo $row['Nombre']; ?></td>
-                    <td><?php echo $row['Descripcion']; ?></td>
-                    <td><?php echo $row['Precio']; ?></td>
-                </tr>
-            <?php
-            } ?>
-        </tbody>
-    </table>
-</div>
-<!-- ** Footer Menu Area Start ** -->
-<footer class="footer_area">
+    <!-- ** Footer Menu Area Start ** -->
+    <footer class="footer_area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -151,7 +128,7 @@
                             <div class="collapse navbar-collapse justify-content-center" id="yummyfood-footer-nav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Bienvenida</a>
+                                        <a class="nav-link" href="index.html">Bienvenida<span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="producto.php">Agregar platos</a>
@@ -181,7 +158,7 @@
                 <div class="col-12">
                     <!-- Copywrite Text -->
                     <div class="copy_right_text text-center">
-                        <p>Copyright @2021 All rights reserved</i> by <a href="img/core-img/BazardelMetal.ico" target="_blank">MetalHead</a></p>
+                        <p>Copyright @2018 All rights reserved</i> by <a href="img/core-img/BazardelMetal.ico" target="_blank">MetalHead</a></p>
                     </div>
                 </div>
             </div>

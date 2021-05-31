@@ -6,7 +6,6 @@
             'Nombre' => $_POST['Nombre'],
             'Descripcion' => $_POST['Descripcion'],
             'Precio' => $_POST['Precio'],
-            'Imagen' => $_POST['Imagen'],
         )
     );
     //strean_context_create: crear un contexto de flujo (debe ser un arrejo asociativo)
@@ -21,5 +20,6 @@
     $contexto = stream_context_create($opciones);
     $resultado = file_get_contents('http://localhost:80/APICRUDRESTAURANTEPHP/api/create.php?'.$datos_post, false, $contexto);
     header('location: producto.php');
+    
     
 ?>
